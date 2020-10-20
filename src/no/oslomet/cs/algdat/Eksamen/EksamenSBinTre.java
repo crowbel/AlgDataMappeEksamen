@@ -159,14 +159,15 @@ public class EksamenSBinTre<T> {
         //Tas for gitt at p != null
         //Det skal håndteres når man kaller metoden.
 
-        //rot = p starter med å sett at roten er p.
+        while(p.venstre != null){
+            p = p.venstre;
+        }
+        return p;
 
+        //rot = p starter med å sett at roten er p.
         //Kan loope videre å sette p = p.venstre frem til p.venstre == null
         //Da har vi den siste på den ytre venstre grenen.
-
         //Når den finnes kan jeg prøve å returnere p.
-
-        throw new UnsupportedOperationException("Ikke kodet ennå!");//Fjernes
     }
 
     private static <T> Node<T> nestePostorden(Node<T> p) {
@@ -175,6 +176,21 @@ public class EksamenSBinTre<T> {
         //Skal returnere neste Noden i post orden.
 
         //Begge disse under kan tas i en while så lenge p.forelder != null. For da er man på den sistenoden i post. Da skal metoden returnere null.
+
+        if (p.forelder == null){
+            return p;
+
+        }else if(p == p.forelder.høyre){
+            p = p.forelder;
+
+        }else if(p == p.forelder.venstre){
+            if(p.forelder.høyre == null){
+                p = p.forelder;
+
+            }else{
+                p = førstePostorden(p.forelder.høyre);
+            }
+        }
 
         //Hvis p er foreldrenoden sin sitt høyre barn og p sin venstre og høyre er null skal p flyttes til foreldrenoden.
 
@@ -185,7 +201,7 @@ public class EksamenSBinTre<T> {
         //Hvis p sin foreldre.høyre != null.
         //Da er skal p flyttes til den første i subtreet som begynner på p.foreldre.høyre som er postnode.
 
-        throw new UnsupportedOperationException("Ikke kodet ennå!");//Fjernes
+        return p;
     }
 
     public void postorden(Oppgave<? super T> oppgave) {
