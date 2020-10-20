@@ -36,8 +36,6 @@ public class EksamenSBinTre<T> {
 
     private final Comparator<? super T> comp;       // komparator
 
-
-
     public EksamenSBinTre(Comparator<? super T> c)    // konstruktør
     {
         rot = null;
@@ -100,9 +98,11 @@ public class EksamenSBinTre<T> {
 
         // p er nå null, dvs. ute av treet, q er den siste vi passerte
 
-        p = new Node<T>(verdi, q);                  //oppretter en ny node //Her kommer det til å bli en feil.
+        p = new Node<T>(verdi, q);                  //oppretter en ny node
 
-        if(q == null) rot = p;                  //p blir rotnode //Legge inn at p sin forelder er null
+        // Lagt inn q som forelder som vil alltid peke til forrige og starter som null.
+
+        if(q == null) rot = p;                  //p blir rotnode
         else if (cmp < 0) q.venstre = p;        //venstre barn til q
         else q.høyre = p;                       //høyre barn til q
 
@@ -119,7 +119,27 @@ public class EksamenSBinTre<T> {
     }
 
     public int antall(T verdi) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+
+        //Må ha en sjekk for om treet er tomt.
+        //Kan kalle antall() for å sjekke om  eller tom() for å se om treet er tomt.
+        //Hvis tomt returneres 0. Da det garantert ikke er er noen forekomster av verdien.
+
+        //Kan kalle på inneholder() og hvis den returnerer true kan jeg kjøre en loop.
+
+        //Loopen må starte på rot og jobbe seg bak til den møter en noden er null
+
+        //Oppdaterer p til p.venstre hvis verdien som lettes etter mindre en p.
+
+        //Oppdatere p til p.høyre hvis verdien som lettes etter er større en p.
+
+        //Returnere p og  sjekke om p er lik verdi.
+
+        //Hvis p er lik verdi kan en teller oppdateres med 1
+
+        //Til slutt returnere telleren når løkken brytes.
+
+
+        throw new UnsupportedOperationException("Ikke kodet ennå!");//Fjernes
     }
 
     public void nullstill() {
