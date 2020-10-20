@@ -1,10 +1,7 @@
 package no.oslomet.cs.algdat.Eksamen;
 
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.StringJoiner;
+import java.util.*;
 
 public class EksamenSBinTre<T> {
     private static final class Node<T>   // en indre nodeklasse
@@ -86,13 +83,9 @@ public class EksamenSBinTre<T> {
     }
 
     public boolean leggInn(T verdi) {
-
-        //Kopiere programkode 5.2.3 a
-
-        /*
+        //Oppgave 1
 
         //Programkode 5.2.3 a)
-
         Objects.requireNonNull(verdi, "Ulovelig med nullverdier!");
 
         Node <T> p = rot, q = null;             //p starter i roten
@@ -107,7 +100,7 @@ public class EksamenSBinTre<T> {
 
         // p er nå null, dvs. ute av treet, q er den siste vi passerte
 
-        p = new Node<>(verdi);                  //oppretter en ny node //Her kommer det til å bli en feil.
+        p = new Node<T>(verdi, q);                  //oppretter en ny node //Her kommer det til å bli en feil.
 
         if(q == null) rot = p;                  //p blir rotnode //Legge inn at p sin forelder er null
         else if (cmp < 0) q.venstre = p;        //venstre barn til q
@@ -115,10 +108,6 @@ public class EksamenSBinTre<T> {
 
         antall++;                               //en verdi mer i treet
         return true;                            //vellykket innlegging
-         */
-
-
-        throw new UnsupportedOperationException("Ikke kodet ennå!"); //Fjernes
     }
 
     public boolean fjern(T verdi) {
