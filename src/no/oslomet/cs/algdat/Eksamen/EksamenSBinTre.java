@@ -120,26 +120,30 @@ public class EksamenSBinTre<T> {
 
     public int antall(T verdi) {
 
-        //Må ha en sjekk for om treet er tomt.
-        //Kan kalle antall() for å sjekke om  eller tom() for å se om treet er tomt.
-        //Hvis tomt returneres 0. Da det garantert ikke er er noen forekomster av verdien.
+        int teller = 0;                                 //Teller som holder antall tilfeller av verdien
+        if(tom()){
+            return teller;                              //Hvis treet er tomt, returneres at det er null forekomster av verdien
+        }
 
-        //Kan kalle på inneholder() og hvis den returnerer true kan jeg kjøre en loop.
+        if(inneholder(verdi)){                          //Henter inn inneholder() til å sjekke at det er en forekomst ellers kan
 
-        //Loopen må starte på rot og jobbe seg bak til den møter en noden er null
+            Node <T> p = rot;                           //Setter en node til å starte på rot.
 
-        //Oppdaterer p til p.venstre hvis verdien som lettes etter mindre en p.
+            while(p != null){                           //Så lenge noden ikke når null skal den loope
 
-        //Oppdatere p til p.høyre hvis verdien som lettes etter er større en p.
-
-        //Returnere p og  sjekke om p er lik verdi.
-
-        //Hvis p er lik verdi kan en teller oppdateres med 1
-
-        //Til slutt returnere telleren når løkken brytes.
-
-
-        throw new UnsupportedOperationException("Ikke kodet ennå!");//Fjernes
+                int cmp = comp.compare(verdi, p.verdi); //Bruker en lik måte å sammenligne verdiene som i inneholder()
+                if(cmp < 0){                            //Hvis cmp er mindre enn, skal p pekkes videre til den mindre noden
+                    p = p.venstre;
+                }else if(cmp > 0){                      //Hvis den er større skal den pekkes videre til det høyre subtreet.
+                    p = p.høyre;
+                }
+                else{                                   //Hvis cmp er lik skal teller økes og fortsette ned høyre subliste.
+                    teller++;                           //Da eventuelle like verdier vil følge som større eller lik hverandre.
+                    p = p.høyre;
+                }
+            }
+        }
+        return teller;
     }
 
     public void nullstill() {
