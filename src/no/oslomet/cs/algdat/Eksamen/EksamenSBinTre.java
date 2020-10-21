@@ -187,7 +187,21 @@ public class EksamenSBinTre<T> {
     }
 
     public void postorden(Oppgave<? super T> oppgave) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        //Oppgave 4
+
+        //Skrive ut treet i postorden
+
+        //Uten bruk av rekursjon
+
+        //Skal bruke funksjonen nestePostorden() ifra forrige oppg.
+
+        //Start med å finne den første noden p i postorden.
+
+        //Deretter vil (f.eks. i en while løkke) setningen: p = nestePostorden(p); gi neste.
+        //Osv til p blir null.
+
+
+        throw new UnsupportedOperationException("Ikke kodet ennå!");//Fjernes
     }
 
     public void postordenRecursive(Oppgave<? super T> oppgave) {
@@ -195,7 +209,14 @@ public class EksamenSBinTre<T> {
     }
 
     private void postordenRecursive(Node<T> p, Oppgave<? super T> oppgave) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        //Oppgave 4
+
+        //kan bruke rekursjon
+
+        //Lage et rekursivt kall som traverserer treet i postorden rekkefølge.
+
+
+        throw new UnsupportedOperationException("Ikke kodet ennå!");//Fjernes
     }
 
     public ArrayList<T> serialize() {
