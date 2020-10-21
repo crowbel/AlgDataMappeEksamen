@@ -69,7 +69,6 @@ public class EksamenSBinTre<T> {
 
         Node<T> p = førstePostorden(rot); // går til den første i postorden
         while (p != null) {
-            System.out.println(p.verdi);
             s.add(p.verdi.toString());
             p = nestePostorden(p);
         }
@@ -170,12 +169,8 @@ public class EksamenSBinTre<T> {
     private static <T> Node<T> nestePostorden(Node<T> p) {
         //Oppgave 3
 
-        //Skal returnere neste Noden i post orden.
-
-        //Begge disse under kan tas i en while så lenge p.forelder != null. For da er man på den sistenoden i post. Da skal metoden returnere null.
-
         if (p.forelder == null){
-            return p;
+            return null;
 
         }else if(p == p.forelder.høyre){
             p = p.forelder;
@@ -188,16 +183,6 @@ public class EksamenSBinTre<T> {
                 p = førstePostorden(p.forelder.høyre);
             }
         }
-
-        //Hvis p er foreldrenoden sin sitt høyre barn og p sin venstre og høyre er null skal p flyttes til foreldrenoden.
-
-        //Hvis på p er foreldrenoden sitt venstre barn må vi sjekke to tilfeller:
-
-        //Hvis p sin forelder.høyre er null. Er p enebarn og dermed er foreldren neste.
-
-        //Hvis p sin foreldre.høyre != null.
-        //Da er skal p flyttes til den første i subtreet som begynner på p.foreldre.høyre som er postnode.
-
         return p;
     }
 
