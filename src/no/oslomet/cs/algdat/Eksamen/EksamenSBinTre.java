@@ -69,6 +69,7 @@ public class EksamenSBinTre<T> {
 
         Node<T> p = førstePostorden(rot); // går til den første i postorden
         while (p != null) {
+            System.out.println(p.verdi);
             s.add(p.verdi.toString());
             p = nestePostorden(p);
         }
@@ -153,21 +154,17 @@ public class EksamenSBinTre<T> {
     private static <T> Node<T> førstePostorden(Node<T> p) {
         //Oppgave 3
 
-        //Skal returnere første node i postorden
+        //Tatt utgangspunkt i Programkode 5.1.7 h)
 
-        //Trenger ikke håndtere eventuelle Nullpointers.
-        //Tas for gitt at p != null
-        //Det skal håndteres når man kaller metoden.
+        while(true){
+            if(p.venstre != null){
+                p = p.venstre;
 
-        while(p.venstre != null){
-            p = p.venstre;
+            }else if(p.høyre != null){
+                p = p.høyre;
+
+            }else return p;
         }
-        return p;
-
-        //rot = p starter med å sett at roten er p.
-        //Kan loope videre å sette p = p.venstre frem til p.venstre == null
-        //Da har vi den siste på den ytre venstre grenen.
-        //Når den finnes kan jeg prøve å returnere p.
     }
 
     private static <T> Node<T> nestePostorden(Node<T> p) {

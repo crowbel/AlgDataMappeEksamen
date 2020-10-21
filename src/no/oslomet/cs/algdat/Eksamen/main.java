@@ -6,6 +6,11 @@ public class main {
     public static void main(String[] args) {
         //Testklasse
 
+        //Oppgave 3 - Testing
+
+        Integer[] a = {4,7,2,9,4,10,8,7,4,6};
+        EksamenSBinTre<Integer> tre = new EksamenSBinTre<>(Comparator.naturalOrder());
+        for (int verdi : a) tre.leggInn(verdi);
 
 
 
