@@ -69,6 +69,7 @@ public class EksamenSBinTre<T> {
 
         Node<T> p = førstePostorden(rot); // går til den første i postorden
         while (p != null) {
+            //System.out.println(p);
             s.add(p.verdi.toString());
             p = nestePostorden(p);
         }
@@ -111,11 +112,89 @@ public class EksamenSBinTre<T> {
     }
 
     public boolean fjern(T verdi) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        //Oppgave 6
+
+        //Programkode 5.2.8 d)
+
+        /*
+
+        if(verdi == null){                          //Treet har ingen nullverdier
+            return false;
+        }
+
+        Node <T> p = rot, q = null;                 //q skal være forelder til p
+
+        while(p != null){                           //Leter etter verdi
+
+            int cmp = comp.compare(verdi, p.verdi); //Sammenligner
+            if(cmp < 0) {
+                q = p; p = p.venstre;               //Går til venstre
+
+            }else if(cmp > 0){
+                q = p; p = p.høyre;                 //Går til høyre
+
+            }else break;                            //Den søkte verdi ligger i p
+        }
+
+        if(p == null){
+            return false;                           //Finner ikke verdi
+        }
+
+        if(p.venstre == null || p.høyre == null) {    //Tilfelle 1) og 2)
+
+        Node <T> b  = p.venstre != null ? p.venstre : p.høyre;  //b for barn
+            if(p == rot) rot = b;
+            else if(p == q.venstre) q.venstre = b;
+            else q.høyre = b;
+
+        }
+
+
+        else{      //Tilfelle 3) at noden har to barn.
+
+            Node <T> s = p, r = p.høyre; //finner neste i inorden
+            while(r.venstre != null){
+                s = r;      //s er forelder til r
+                r = r.venstre;
+            }
+
+            p.verdi = r.verdi;      //Kopierer verdien i r til p
+
+            if(s != p){
+                s.venstre = r.høyre;
+
+            }
+
+            else{
+                s.høyre = r.høyre;
+            }
+        }
+
+        //Må gjøre endringer så foreldrepekerene er korrekte etter sletting.
+
+        //Blir feil sånn den står ved at tallet som står igjen hvis første 8 fjernes.
+        //Ender opp med at 8 blir skrevet ut evig, da denne ikke har en riktig peker videre.
+
+        antall--; //Det er nå en node mindre i treet
+        return true;
+
+        */
+
+        throw new UnsupportedOperationException("Ikke kodet ennå!");//Fjernes
     }
 
     public int fjernAlle(T verdi) {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        //Oppgave 6
+
+        //Sette en int teller = 0;
+
+        //Kan kalle på fjern(T) metoden med T verdi og loope den til den returnerer false.
+
+        //For hver loop den gjør kan man øke teller med en.
+
+        //Så returnere telleren til slutt.
+
+        throw new UnsupportedOperationException("Ikke kodet ennå!");//Fjernes
     }
 
     public int antall(T verdi) {
@@ -147,7 +226,17 @@ public class EksamenSBinTre<T> {
     }
 
     public void nullstill() {
-        throw new UnsupportedOperationException("Ikke kodet ennå!");
+        //Oppgave 6
+
+        //Nullstill metode som skal traversere treet.
+
+        //Valgfri orden - Vurderer postorden da jeg da alltid vil slette noder som ikke har noen barn.
+
+        //Da vil også den siste jeg fjerner være rotnoden som jeg mener er ryddig.
+
+        //Må huske å minske antall for hver fjerning.
+
+        throw new UnsupportedOperationException("Ikke kodet ennå!");//Fjernes
     }
 
     private static <T> Node<T> førstePostorden(Node<T> p) {
@@ -189,19 +278,11 @@ public class EksamenSBinTre<T> {
     public void postorden(Oppgave<? super T> oppgave) {
         //Oppgave 4
 
-        //Skrive ut treet i postorden
+        Node <T> p = førstePostorden(rot);
 
-        //Uten bruk av rekursjon
-
-        //Skal bruke funksjonen nestePostorden() ifra forrige oppg.
-
-        //Start med å finne den første noden p i postorden.
-
-        //Deretter vil (f.eks. i en while løkke) setningen: p = nestePostorden(p); gi neste.
-        //Osv til p blir null.
-
-
-        throw new UnsupportedOperationException("Ikke kodet ennå!");//Fjernes
+        while(p != null){
+            p = nestePostorden(p);
+        }
     }
 
     public void postordenRecursive(Oppgave<? super T> oppgave) {
@@ -212,6 +293,22 @@ public class EksamenSBinTre<T> {
         //Oppgave 4
 
         //kan bruke rekursjon
+
+
+        //Her brukers Programkode 5.1.7 d) fra Kompendiet.
+
+        if(p.venstre != null){
+            postordenRecursive(p.venstre, oppgave);
+        }
+
+        if (p.høyre != null){
+            postordenRecursive(p.høyre, oppgave);
+        }
+
+        oppgave.utførOppgave(p.verdi);
+
+
+
 
         //Lage et rekursivt kall som traverserer treet i postorden rekkefølge.
 
