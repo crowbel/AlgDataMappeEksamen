@@ -116,8 +116,6 @@ public class EksamenSBinTre<T> {
 
         //Programkode 5.2.8 d)
 
-        /*
-
         if(verdi == null){                          //Treet har ingen nullverdier
             return false;
         }
@@ -149,7 +147,6 @@ public class EksamenSBinTre<T> {
 
         }
 
-
         else{      //Tilfelle 3) at noden har to barn.
 
             Node <T> s = p, r = p.høyre; //finner neste i inorden
@@ -177,24 +174,23 @@ public class EksamenSBinTre<T> {
 
         antall--; //Det er nå en node mindre i treet
         return true;
-
-        */
-
-        throw new UnsupportedOperationException("Ikke kodet ennå!");//Fjernes
     }
 
     public int fjernAlle(T verdi) {
         //Oppgave 6
 
         //Sette en int teller = 0;
+        int teller = 0;
 
-        //Kan kalle på fjern(T) metoden med T verdi og loope den til den returnerer false.
+        if (tom()){                 //Sjekke om treet er tomt.
+            return teller;
+        }else {
 
-        //For hver loop den gjør kan man øke teller med en.
-
-        //Så returnere telleren til slutt.
-
-        throw new UnsupportedOperationException("Ikke kodet ennå!");//Fjernes
+            while (fjern(verdi)) {  //Kalle på fjern(T) metoden med T verdi og loope den til den returnerer false.
+                teller++;           //For hver loop den gjør kan man øke teller med en.
+            }
+        }
+        return teller;      //Så returnere telleren til slutt.
     }
 
     public int antall(T verdi) {
@@ -230,13 +226,28 @@ public class EksamenSBinTre<T> {
 
         //Nullstill metode som skal traversere treet.
 
+        Node <T> p = førstePostorden(rot);
+
+        Node <T> q = nestePostorden(p);
+
         //Valgfri orden - Vurderer postorden da jeg da alltid vil slette noder som ikke har noen barn.
 
         //Da vil også den siste jeg fjerner være rotnoden som jeg mener er ryddig.
 
-        //Må huske å minske antall for hver fjerning.
+        while(!tom()){
 
-        throw new UnsupportedOperationException("Ikke kodet ennå!");//Fjernes
+            if(q == nestePostorden(p) || q.forelder == null){     //Skal p slettes.
+                fjern(p.verdi);
+                antall--;
+                p = nestePostorden(q);
+
+            }else if(p == nestePostorden(q) || p.forelder == null){       //Skal q slettes.
+                fjern(q.verdi);
+                antall--;
+                q = nestePostorden(p);
+            }
+            // Minske antall for hver fjerning.
+        }
     }
 
     private static <T> Node<T> førstePostorden(Node<T> p) {
@@ -276,11 +287,11 @@ public class EksamenSBinTre<T> {
     }
 
     public void postorden(Oppgave<? super T> oppgave) {
-        //Oppgave 4
 
         Node <T> p = førstePostorden(rot);
 
         while(p != null){
+            oppgave.utførOppgave(p.verdi);
             p = nestePostorden(p);
         }
     }
@@ -290,12 +301,9 @@ public class EksamenSBinTre<T> {
     }
 
     private void postordenRecursive(Node<T> p, Oppgave<? super T> oppgave) {
-        //Oppgave 4
-
-        //kan bruke rekursjon
-
 
         //Her brukers Programkode 5.1.7 d) fra Kompendiet.
+        //Endret til å ta høyde for å kjøre postOrden istedet for inOrden
 
         if(p.venstre != null){
             postordenRecursive(p.venstre, oppgave);
@@ -304,23 +312,18 @@ public class EksamenSBinTre<T> {
         if (p.høyre != null){
             postordenRecursive(p.høyre, oppgave);
         }
-
         oppgave.utførOppgave(p.verdi);
-
-
-
-
-        //Lage et rekursivt kall som traverserer treet i postorden rekkefølge.
-
-
-        throw new UnsupportedOperationException("Ikke kodet ennå!");//Fjernes
     }
 
     public ArrayList<T> serialize() {
+
+
+
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
     static <K> EksamenSBinTre<K> deserialize(ArrayList<K> data, Comparator<? super K> c) {
+
         throw new UnsupportedOperationException("Ikke kodet ennå!");
     }
 
