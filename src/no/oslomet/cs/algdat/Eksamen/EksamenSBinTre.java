@@ -317,61 +317,30 @@ public class EksamenSBinTre<T> {
 
     public ArrayList<T> serialize() {
 
-        //Skal serializere
-        //Lage et kompakt format egnet for lagring til f.eks. fil - array.
-
-
         //Programkode 5.1.6 a) - Traversering - Nivåorden
 
-        if(tom()){
-            return null;
-        }
+        ArrayList <T> liste = new ArrayList<>();
 
-        ArrayList <T> kø = new ArrayList<T>();
-        kø.add(rot.verdi);
+        Queue <Node <T>> kø = new LinkedList<>();
+
+        kø.add(rot);
 
         while(!kø.isEmpty()){
-            Node <T> p = null;
-            //p = kø.remove();
-            System.out.println(p.verdi + " ");
 
-            if(p.venstre != null) kø.add(p.venstre.verdi);
+            Node <T> p = kø.poll();
+            //System.out.println(p.verdi); //Debuggutskrift for å vise p.verdi.
+            liste.add(p.verdi);
 
-            if(p.høyre != null) kø.add(p.høyre.verdi);
-        }
-        return kø;
-
-        /*
-        ArrayList <T> kø = new ArrayList<T>();
-
-        Node<T> p = rot;                               //Legger inn rotnoden
-        kø.add(p.verdi);
-
-
-        while(p != null){
-
-            if(p.venstre != null){
-                kø.add(p.venstre.verdi);
+            if (p.venstre != null){
+                kø.add(p.venstre);
             }
-
-            if(p.høyre != null){
-                kø.add(p.høyre.verdi);
+            if (p.høyre != null){
+                kø.add(p.høyre);
             }
-
-            System.out.println(p.verdi + " ");
-            kø.add(p.verdi);
         }
+        //System.out.println("Listen sine verdier er: " + liste);
+        return liste;
 
-        return kø;
-
-         */
-        //Skal være iterativ og må bruke kø til å traversere treet i nivå orden.
-
-        //Kan ta noe inspirasjon ifra 5.1.6 d)
-
-        //Arrayet som returneres av serialize skal inneholde verdiene i alle nodene i nivå orden.
-
-        //throw new UnsupportedOperationException("Ikke kodet ennå!");//Fjernes
     }
 
     static <K> EksamenSBinTre<K> deserialize(ArrayList<K> data, Comparator<? super K> c) {
