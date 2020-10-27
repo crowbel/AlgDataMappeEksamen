@@ -340,7 +340,6 @@ public class EksamenSBinTre<T> {
         }
         //System.out.println("Listen sine verdier er: " + liste);
         return liste;
-
     }
 
     static <K> EksamenSBinTre<K> deserialize(ArrayList<K> data, Comparator<? super K> c) {
