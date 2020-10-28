@@ -20,6 +20,6 @@ Jeg startet med å lagre den opprinnelige utlevert kildekoden.
 
 * Oppgave 1: Løste ved å implementere ...
 * Oppgave 2: ...
-* Oppgave 5: Serialize() ble løst ved å hente inn Programkode 5.1.6 a) ifra kompendiet, Opprettet en ny arrayliste og en kø som bruker Java sin Queue.
+* Oppgave 5: Serialize() ble løst ved å hente inn Programkode 5.1.6 a) ifra kompendiet og tilpasse denne, opprettet en ny arrayliste og en kø som bruker Java sin Queue.
 Starter med å sette første i køen til rot, og starter en whileløkke som holder på til køen er tom. Setter en hjelpenode til kø.poll().
 Så legger jeg til et nytt element i listen med p.verdi før jeg setter inn et nytt element i køen og looper tilbake. Til slutt returneres liste. 

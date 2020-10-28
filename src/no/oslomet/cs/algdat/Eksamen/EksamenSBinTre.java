@@ -1,6 +1,7 @@
 package no.oslomet.cs.algdat.Eksamen;
 
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class EksamenSBinTre<T> {
@@ -343,17 +344,46 @@ public class EksamenSBinTre<T> {
     }
 
     static <K> EksamenSBinTre<K> deserialize(ArrayList<K> data, Comparator<? super K> c) {
-
         //Skal Deserialisere
         //Lage et nytt tre ut ifra et array.
+        System.out.println("Data arrayet som skal legges inn: " + data);
 
+        EksamenSBinTre <K> nyttTree = new EksamenSBinTre<>(c);  //Oppretter ny instans av EksamenSBinTre
+
+        Queue <K> kø = new LinkedList<>();  //Setter en kø som tar inn en verdi av <K> data.
+
+
+        kø.add(data.get(0)); //Starter køen ved å sette første i ArrayListen inn i køen.
+
+        //System.out.println("Første element i køen: " + kø); //Testprint for å sjekke at første element ligger i køen.
+
+
+        int i = 0;
+        while(!kø.isEmpty()){
+
+            K p = kø.poll();
+
+            System.out.println(p);
+            nyttTree.leggInn(p); //Legger inn første noden nivåorden.
+
+            if (i <= data.size() - 1){
+
+                kø.add(data.get(i));
+            }
+
+            System.out.println("Antall noder i nyttTree: " + nyttTree.antall);
+
+            i++;
+        }
         //Deserialize skal da ta dette arrayet, og legge inn alle verdiene (igjen i nivå orden)
 
         //Dermed gjenskape treet
 
         //Kan se til Programkode 5.1.6 g)
 
-        throw new UnsupportedOperationException("Ikke kodet ennå!");//Fjernes
+        System.out.println("Antall noder i nyttTree: " + nyttTree.antall);
+
+        return nyttTree; //Returnerer den nye instansen.
     }
 
 
