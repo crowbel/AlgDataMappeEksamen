@@ -355,10 +355,8 @@ public class EksamenSBinTre<T> {
 
         kø.add(data.get(0)); //Starter køen ved å sette første i ArrayListen inn i køen.
 
-        //System.out.println("Første element i køen: " + kø); //Testprint for å sjekke at første element ligger i køen.
 
-
-        int i = 0;
+        int i = 1;
         while(!kø.isEmpty()){
 
             K p = kø.poll();
@@ -372,8 +370,8 @@ public class EksamenSBinTre<T> {
             }
 
             System.out.println("Antall noder i nyttTree: " + nyttTree.antall);
-
             i++;
+
         }
         //Deserialize skal da ta dette arrayet, og legge inn alle verdiene (igjen i nivå orden)
 
