@@ -318,7 +318,7 @@ public class EksamenSBinTre<T> {
 
     public ArrayList<T> serialize() {
 
-        //Programkode 5.1.6 a) - Traversering - Nivåorden
+        //Programkode 5.1.6 a)
 
         ArrayList <T> liste = new ArrayList<>();
 
@@ -327,9 +327,7 @@ public class EksamenSBinTre<T> {
         kø.add(rot);
 
         while(!kø.isEmpty()){
-
             Node <T> p = kø.poll();
-            //System.out.println(p.verdi); //Debuggutskrift for å vise p.verdi.
             liste.add(p.verdi);
 
             if (p.venstre != null){
@@ -339,49 +337,31 @@ public class EksamenSBinTre<T> {
                 kø.add(p.høyre);
             }
         }
-        //System.out.println("Listen sine verdier er: " + liste);
         return liste;
     }
 
     static <K> EksamenSBinTre<K> deserialize(ArrayList<K> data, Comparator<? super K> c) {
-        //Skal Deserialisere
-        //Lage et nytt tre ut ifra et array.
-        System.out.println("Data arrayet som skal legges inn: " + data);
 
-        EksamenSBinTre <K> nyttTree = new EksamenSBinTre<>(c);  //Oppretter ny instans av EksamenSBinTre
+        //Basert på Programkode 5.1.6 a)
 
-        Queue <K> kø = new LinkedList<>();  //Setter en kø som tar inn en verdi av <K> data.
+        EksamenSBinTre <K> nyttTree = new EksamenSBinTre<>(c);
 
+        Queue <K> kø = new LinkedList<>();
 
-        kø.add(data.get(0)); //Starter køen ved å sette første i ArrayListen inn i køen.
-
-
+        kø.add(data.get(0));
         int i = 1;
+
         while(!kø.isEmpty()){
 
             K p = kø.poll();
-
-            System.out.println(p);
-            nyttTree.leggInn(p); //Legger inn første noden nivåorden.
+            nyttTree.leggInn(p);
 
             if (i <= data.size() - 1){
-
                 kø.add(data.get(i));
             }
-
-            System.out.println("Antall noder i nyttTree: " + nyttTree.antall);
             i++;
-
         }
-        //Deserialize skal da ta dette arrayet, og legge inn alle verdiene (igjen i nivå orden)
-
-        //Dermed gjenskape treet
-
-        //Kan se til Programkode 5.1.6 g)
-
-        System.out.println("Antall noder i nyttTree: " + nyttTree.antall);
-
-        return nyttTree; //Returnerer den nye instansen.
+        return nyttTree;
     }
 
 

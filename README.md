@@ -22,4 +22,9 @@ Jeg startet med å lagre den opprinnelige utlevert kildekoden.
 * Oppgave 2: ...
 * Oppgave 5: Serialize() ble løst ved å hente inn Programkode 5.1.6 a) ifra kompendiet og tilpasse denne, opprettet en ny arrayliste og en kø som bruker Java sin Queue.
 Starter med å sette første i køen til rot, og starter en whileløkke som holder på til køen er tom. Setter en hjelpenode til kø.poll().
-Så legger jeg til et nytt element i listen med p.verdi før jeg setter inn et nytt element i køen og looper tilbake. Til slutt returneres liste. 
+Så legger jeg til et nytt element i listen med p.verdi før jeg setter inn et nytt element i køen og looper tilbake. Til slutt returneres liste.
+På deserialize() begynte jeg på likmåte som i serialize() ved å sette en instans av EksamenSBinTre og sette en lenket liste som skal være kø.
+Således satte jeg indeks 0 av ArrayListen data som starten av køen.
+Så starter jeg en while-løkke som skal stoppe når køen blir tom. Henter verdien til det aktive kø elementet, og legger dette inn i nyttTree.
+Så lenge ikke telleren i møter siste verdi i data listen skal kø endres til gjelende. Så økes teller, og treet returneres.
+  
