@@ -70,7 +70,7 @@ public class EksamenSBinTre<T> {
 
         Node<T> p = førstePostorden(rot); // går til den første i postorden
         while (p != null) {
-            //System.out.println(p);
+            System.out.println(p);
             s.add(p.verdi.toString());
             p = nestePostorden(p);
         }
@@ -121,7 +121,9 @@ public class EksamenSBinTre<T> {
             return false;
         }
 
-        Node <T> p = rot, q = null;                 //q skal være forelder til p
+        Node <T> p = rot, q = null; //q skal være forelder til p
+
+
 
         while(p != null){                           //Leter etter verdi
 
@@ -139,12 +141,26 @@ public class EksamenSBinTre<T> {
             return false;                           //Finner ikke verdi
         }
 
+
         if(p.venstre == null || p.høyre == null) {    //Tilfelle 1) og 2)
 
         Node <T> b  = p.venstre != null ? p.venstre : p.høyre;  //b for barn
-            if(p == rot) rot = b;
-            else if(p == q.venstre) q.venstre = b;
-            else q.høyre = b;
+            //Hvis p.venstre != null da er b = p.venstre
+            //Hvis p.venstre == null da er b = p.høyre
+
+
+            if(p == rot){
+                rot = b;
+
+            }else if(p == q.venstre){
+                q.venstre = b;
+
+
+            }else{
+                q.høyre = b;
+            }
+
+
 
         }
 
@@ -153,7 +169,10 @@ public class EksamenSBinTre<T> {
             Node <T> s = p, r = p.høyre; //finner neste i inorden
             while(r.venstre != null){
                 s = r;      //s er forelder til r
+
                 r = r.venstre;
+
+
             }
 
             p.verdi = r.verdi;      //Kopierer verdien i r til p
@@ -161,11 +180,14 @@ public class EksamenSBinTre<T> {
             if(s != p){
                 s.venstre = r.høyre;
 
+
             }
 
             else{
                 s.høyre = r.høyre;
             }
+
+
         }
 
         //Må gjøre endringer så foreldrepekerene er korrekte etter sletting.
