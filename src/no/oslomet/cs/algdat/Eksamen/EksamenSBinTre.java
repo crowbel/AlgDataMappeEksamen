@@ -70,7 +70,6 @@ public class EksamenSBinTre<T> {
 
         Node<T> p = førstePostorden(rot); // går til den første i postorden
         while (p != null) {
-            System.out.println(p);
             s.add(p.verdi.toString());
             p = nestePostorden(p);
         }
@@ -113,67 +112,50 @@ public class EksamenSBinTre<T> {
 
         //Programkode 5.2.8 d)
 
-        if(verdi == null){                          //Treet har ingen nullverdier
+        if(verdi == null){
             return false;
         }
 
-        Node <T> p = rot, q = null; //q skal være forelder til p
+        Node <T> p = rot, q = null;
 
+        while(p != null){
 
-
-        while(p != null){                           //Leter etter verdi
-
-            int cmp = comp.compare(verdi, p.verdi); //Sammenligner
+            int cmp = comp.compare(verdi, p.verdi);
             if(cmp < 0) {
-                q = p; p = p.venstre;               //Går til venstre
+                q = p; p = p.venstre;
 
             }else if(cmp > 0){
-                q = p; p = p.høyre;                 //Går til høyre
+                q = p; p = p.høyre;
 
-            }else break;                            //Den søkte verdi ligger i p
+            }else break;
         }
-
         if(p == null){
-            return false;                           //Finner ikke verdi
+            return false;
         }
+        if(p.venstre == null || p.høyre == null) {
 
-
-        if(p.venstre == null || p.høyre == null) {    //Tilfelle 1) og 2)
-
-        Node <T> b  = p.venstre != null ? p.venstre : p.høyre;  //b for barn
-            //Hvis p.venstre != null da er b = p.venstre
-            //Hvis p.venstre == null da er b = p.høyre
-
-            // hvis temp sin forelder p.forelder
-
-            //Temp er den som skal fjerne
-
-
+        Node <T> b  = p.venstre != null ? p.venstre : p.høyre;
 
                 if (p == rot) rot = b;
                 else if (p == q.venstre) {
                     q.venstre = b;
-                    //p.venstre = b;
+
                 } else {
                     q.høyre = b;
-                    //p.høyre = b;
-                }
 
+                }
         }
 
-        else{      //Tilfelle 3) at noden har to barn.
-
-            Node <T> s = p, r = p.høyre; //finner neste i inorden
+        else{
+            Node <T> s = p, r = p.høyre;
             while(r.venstre != null){
 
-                s = r;      //s er forelder til r
+                s = r;
 
                 r = r.venstre;
             }
 
-            p.verdi = r.verdi;      //Kopierer verdien i r til p
-
-            //p.venstre.forelder = s;//Nå skjedde det noe.
+            p.verdi = r.verdi;
 
             if(s != p){
                 s.venstre = r.høyre;
@@ -185,15 +167,7 @@ public class EksamenSBinTre<T> {
 
             }
         }
-
-        //Må gjøre endringer så foreldrepekerene er korrekte etter sletting.
-
-        //Blir feil sånn den står ved at tallet som står igjen hvis første 8 fjernes.
-        //Ender opp med at 8 blir skrevet ut evig, da denne ikke har en riktig peker videre.
-
-
-
-        antall--; //Det er nå en node mindre i treet
+        antall--;
         return true;
     }
 
@@ -330,6 +304,7 @@ public class EksamenSBinTre<T> {
     }
 
     public ArrayList<T> serialize() {
+        //Oppgave 5
 
         //Programkode 5.1.6 a)
 
@@ -354,6 +329,7 @@ public class EksamenSBinTre<T> {
     }
 
     static <K> EksamenSBinTre<K> deserialize(ArrayList<K> data, Comparator<? super K> c) {
+        //Oppgave 5
 
         //Basert på Programkode 5.1.6 a)
 

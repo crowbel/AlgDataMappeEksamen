@@ -14,7 +14,7 @@ Se oblig-tekst for alle krav, og husk spesielt på følgende:
 
 # Beskrivelse av oppgaveløsning (4-8 linjer/setninger per oppgave)
 
-Jeg har brukt git til å dokumentere arbeidet mitt. Jeg har 16 commits totalt, og hver logg-melding beskriver det jeg har gjort av endringer.
+Jeg har brukt git til å dokumentere arbeidet mitt. Jeg har 24 commits totalt, og hver logg-melding beskriver det jeg har gjort av endringer.
 
 Jeg startet med å lagre den opprinnelige utlevert kildekoden.
 
@@ -45,16 +45,18 @@ På postorderRecursive() bruker jeg Programkode 5.1.7 d) hvor jeg bare har tilpa
 Her har vi to rekursive kall som hver seg sjekker at venstre eller høyre barn ikke er null og kaller så seg selv med p sitt venstre eller høyre barn med oppgaven.
 Så kjøres et utførOppgave kall slik som i postorden() etter kallene.
 
-* Oppgave 5: Serialize() ble løst ved å hente inn Programkode 5.1.6 a) ifra kompendiet og tilpasse denne, opprettet en ny arrayliste og en kø som bruker Java sin Queue.
-Setter så første i køen til rot, og starter en whileløkke som holder på til køen er tom. Setter en hjelpenode til kø.poll().
+* Oppgave 5: Serialize() ble løst ved å bruke Programkode 5.1.6 a) og tilpasse denne, satt en ny arrayliste og en kø som bruker Java sin Queue.
+Setter første i køen til rot, starter en whileløkke som går til køen = null. Setter en hjelpenode til kø.poll().
 Så legger jeg til et nytt element i listen med p.verdi før jeg setter inn et nytt element i køen og looper tilbake. Til slutt returneres liste.
 På deserialize() begynte jeg på likmåte som i serialize() ved å sette en instans av EksamenSBinTre og sette en lenket liste som skal være kø.
 Således satte jeg indeks 0 av ArrayListen data som starten av køen.
 Så starter jeg en while-løkke som skal stoppe når køen blir tom. Henter verdien til det aktive kø elementet, og legger dette inn i nyttTree.
 Så lenge ikke telleren i møter siste verdi i data listen skal kø endres til gjelende. Så økes teller, og treet returneres.
  
-* Oppgave 6: fjern() henter inn Programkode 5.2.8 d) 
-
+* Oppgave 6: fjern() henter inn Programkode 5.2.8 d) Klarer dessverre ikke å få pekerne til å bli helt riktige i programkoden vi har fått utdelt.
+ Dette fører til en evig loop på siste element som skal fjernes "verdi = 8".
+ Men ser at det er barna av noden som fjernes som må få oppdaterte pekere i hvert av de tre tilfellene her. 
+ 
 fjernAlle() starter med å sette en teller for hvor mange som er fjernet.
 Så sjekker jeg om treet er tomt, hvis ikke kjøres en while løkke som benytter seg av fjern(T verdi) og øker telleren før den returneres.
 nullstill() Setter en p og q som rot og nestepostorden(p), metoden går i postorden. 
