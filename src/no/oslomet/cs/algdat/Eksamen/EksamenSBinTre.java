@@ -88,28 +88,24 @@ public class EksamenSBinTre<T> {
         //Programkode 5.2.3 a)
         Objects.requireNonNull(verdi, "Ulovelig med nullverdier!");
 
-        Node <T> p = rot, q = null;             //p starter i roten
-        int cmp = 0;                            //hjelpevariabel
+        Node <T> p = rot, q = null;
+        int cmp = 0;
 
-        while(p != null){       //fortsetter til p er ute av treet
+        while(p != null){
 
-        q = p;                                  //q er forelder til p
-        cmp = comp.compare(verdi, p.verdi);     //bruker komparatoren
-        p = cmp < 0 ? p.venstre : p.høyre;      //flytter p
+        q = p;
+        cmp = comp.compare(verdi, p.verdi);
+        p = cmp < 0 ? p.venstre : p.høyre;
         }
 
-        // p er nå null, dvs. ute av treet, q er den siste vi passerte
+        p = new Node<T>(verdi, q);
 
-        p = new Node<T>(verdi, q);                  //oppretter en ny node
+        if(q == null) rot = p;
+        else if (cmp < 0) q.venstre = p;
+        else q.høyre = p;
 
-        // Lagt inn q som forelder som vil alltid peke til forrige og starter som null.
-
-        if(q == null) rot = p;                  //p blir rotnode
-        else if (cmp < 0) q.venstre = p;        //venstre barn til q
-        else q.høyre = p;                       //høyre barn til q
-
-        antall++;                               //en verdi mer i treet
-        return true;                            //vellykket innlegging
+        antall++;
+        return true;
     }
 
     public boolean fjern(T verdi) {
@@ -148,19 +144,20 @@ public class EksamenSBinTre<T> {
             //Hvis p.venstre != null da er b = p.venstre
             //Hvis p.venstre == null da er b = p.høyre
 
+            // hvis temp sin forelder p.forelder
 
-            if(p == rot){
-                rot = b;
-
-            }else if(p == q.venstre){
-                q.venstre = b;
+            //Temp er den som skal fjerne
 
 
-            }else{
-                q.høyre = b;
-            }
 
-
+                if (p == rot) rot = b;
+                else if (p == q.venstre) {
+                    q.venstre = b;
+                    //p.venstre = b;
+                } else {
+                    q.høyre = b;
+                    //p.høyre = b;
+                }
 
         }
 
@@ -168,32 +165,33 @@ public class EksamenSBinTre<T> {
 
             Node <T> s = p, r = p.høyre; //finner neste i inorden
             while(r.venstre != null){
+
                 s = r;      //s er forelder til r
 
                 r = r.venstre;
-
-
             }
 
             p.verdi = r.verdi;      //Kopierer verdien i r til p
 
+            //p.venstre.forelder = s;//Nå skjedde det noe.
+
             if(s != p){
                 s.venstre = r.høyre;
-
 
             }
 
             else{
                 s.høyre = r.høyre;
+
             }
-
-
         }
 
         //Må gjøre endringer så foreldrepekerene er korrekte etter sletting.
 
         //Blir feil sånn den står ved at tallet som står igjen hvis første 8 fjernes.
         //Ender opp med at 8 blir skrevet ut evig, da denne ikke har en riktig peker videre.
+
+
 
         antall--; //Det er nå en node mindre i treet
         return true;
@@ -202,18 +200,17 @@ public class EksamenSBinTre<T> {
     public int fjernAlle(T verdi) {
         //Oppgave 6
 
-        //Sette en int teller = 0;
         int teller = 0;
 
-        if (tom()){                 //Sjekke om treet er tomt.
+        if (tom()){
             return teller;
         }else {
 
-            while (fjern(verdi)) {  //Kalle på fjern(T) metoden med T verdi og loope den til den returnerer false.
-                teller++;           //For hver loop den gjør kan man øke teller med en.
+            while (fjern(verdi)) {
+                teller++;
             }
         }
-        return teller;      //Så returnere telleren til slutt.
+        return teller;
     }
 
     public int antall(T verdi) {
@@ -247,29 +244,22 @@ public class EksamenSBinTre<T> {
     public void nullstill() {
         //Oppgave 6
 
-        //Nullstill metode som skal traversere treet.
-
         Node <T> p = førstePostorden(rot);
 
         Node <T> q = nestePostorden(p);
 
-        //Valgfri orden - Vurderer postorden da jeg da alltid vil slette noder som ikke har noen barn.
-
-        //Da vil også den siste jeg fjerner være rotnoden som jeg mener er ryddig.
-
         while(!tom()){
 
-            if(q == nestePostorden(p) || q.forelder == null){     //Skal p slettes.
+            if(q == nestePostorden(p) || q.forelder == null){
                 fjern(p.verdi);
                 antall--;
                 p = nestePostorden(q);
 
-            }else if(p == nestePostorden(q) || p.forelder == null){       //Skal q slettes.
+            }else if(p == nestePostorden(q) || p.forelder == null){
                 fjern(q.verdi);
                 antall--;
                 q = nestePostorden(p);
             }
-            // Minske antall for hver fjerning.
         }
     }
 
@@ -310,6 +300,7 @@ public class EksamenSBinTre<T> {
     }
 
     public void postorden(Oppgave<? super T> oppgave) {
+        //Oppgave 4
 
         Node <T> p = førstePostorden(rot);
 
@@ -324,9 +315,9 @@ public class EksamenSBinTre<T> {
     }
 
     private void postordenRecursive(Node<T> p, Oppgave<? super T> oppgave) {
+        //Oppgave 4
 
         //Her brukers Programkode 5.1.7 d) fra Kompendiet.
-        //Endret til å ta høyde for å kjøre postOrden istedet for inOrden
 
         if(p.venstre != null){
             postordenRecursive(p.venstre, oppgave);
